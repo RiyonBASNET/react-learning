@@ -10,11 +10,14 @@ const initialMovies = [
 function Day5() {
   const [movies, setMovies] = useState(initialMovies);
 
+  function handleRemoveMovie(id) {
+    setMovies((prevMovies) => prevMovies.filter((movie) => movie.id !== id));
+  }
   return (
     <div>
       <h1>Day 5 (Mini Project)</h1>
       <h2>Movie Library(List Viewer)</h2>
-      <MovieList movies={movies} />
+      <MovieList movies={movies} onRemove={handleRemoveMovie} />
     </div>
   );
 }
