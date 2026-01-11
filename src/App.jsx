@@ -15,10 +15,8 @@ function App() {
         <Link to="/day1">Day 1</Link> <br />
         <Link to="/day2">Day 2</Link> <br />
         <Link to="/day3">Day 3</Link> <br />
-        <Link to="/day4">Day 4</Link>
-        <br />
-        <Link to="/day5">Day 5</Link>
-        <br />
+        <Link to="/day4">Day 4</Link> <br />
+        <Link to="/day5">Day 5</Link> <br />
       </nav>
       <Routes>
         <Route path="/day1" element={<Day1 />} />
