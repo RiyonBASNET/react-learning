@@ -5,6 +5,7 @@ import Day2 from "./pages/Day2";
 import Day3 from "./pages/Day3";
 import Day4 from "./pages/Day4";
 import Day5 from "./pages/Day5";
+import Day9 from "./pages/Day9";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Link to="/day3">Day 3</Link> <br />
         <Link to="/day4">Day 4</Link> <br />
         <Link to="/day5">Day 5</Link> <br />
+        <Link to="/day9">Day 9</Link> <br />
       </nav>
       <Routes>
         <Route path="/day1" element={<Day1 />} />
@@ -24,6 +26,7 @@ function App() {
         <Route path="/day3" element={<Day3 />} />
         <Route path="/day4" element={<Day4 />} />
         <Route path="/day5" element={<Day5 />} />
+        <Route path="/day9" element={<Day9 />} />
       </Routes>
     </div>
   );
