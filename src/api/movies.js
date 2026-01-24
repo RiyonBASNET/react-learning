@@ -9,3 +9,8 @@ export async function createMovie(movie) {
     const response = await apiClient.post("/posts", movie);
     return response.data;
 }
+
+export async function deleteMovie(id) {
+    await apiClient.delete('/posts/${id}')
+    return id;
+}
