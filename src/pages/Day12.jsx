@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import { getMovies, createMovie } from "../api/movies";
+import { useState } from "react";
 import MovieList from "../components/MovieList";
 import AddMovieForm2 from "../components/AddMovieForm2";
 
 function Day12() {
   const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
 
   function handleAddMovie(movie) {
     setMovies((prevMovies) => [
