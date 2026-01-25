@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { getMovies } from "../api/movies";
+import { deleteMovie, getMovies } from "../api/movies";
 import MoviesList from "../components/MoviesList";
-import apiClient from "../api/apiClient";
 
 function Day14() {
   const [movies, setMovies] = useState([]);
@@ -35,7 +34,7 @@ function Day14() {
     setMovies((prev) => prev.filter((movie) => movie.id !== id));
 
     try {
-      await apiClient.delete("movies/post/${id}");
+      await deleteMovie(id);
     } catch {
       setError("Unable to delete movie.");
     }

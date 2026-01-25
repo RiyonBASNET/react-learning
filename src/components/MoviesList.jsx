@@ -1,4 +1,3 @@
-import MovieCard from "./MovieCard";
 import EmptyState from "./EmptyState";
 
 function MovieList({ movies, onDelete }) {
