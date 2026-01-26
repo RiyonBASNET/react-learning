@@ -14,3 +14,8 @@ export async function deleteMovie(id) {
     await apiClient.delete('/posts/${id}')
     return id;
 }
+
+export async function updateMovie(id, movie) {
+    const response = await apiClient.put('/posts/${id}', movie);
+    return response.data;
+}

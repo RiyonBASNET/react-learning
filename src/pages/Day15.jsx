@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { deleteMovie, getMovies } from "../api/movies";
+import { getMovies, updateMovie } from "../api/movies";
 import MoviesList from "../components/MoviesList";
+import EditMovieForm from "../components/EditMovieForm";
 
-function Day14() {
+function Day15() {
   const [movies, setMovies] = useState([]);
+  const [editMovie, setEditMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -30,14 +32,18 @@ function Day14() {
     loadMovies();
   }, []);
 
-  async function handleDeleteMovie(id) {
-    setMovies((prev) => prev.filter((movie) => movie.id !== id));
+  function handleEditClick(movie) {
+    setEditMovie(movie);
+  }
 
-    try {
-      await deleteMovie(id);
-    } catch {
-      setError("Unable to delete movie.");
-    }
+  async function handleUpdateMovie(updatedMovie) {
+    const saved = await updateMovie(updatedMovie.id, updatedMovie);
+
+    setMovies((prev) =>
+      prev.map((movie) => (movie.id === saved.id ? saved : movie)),
+    );
+
+    setEditMovie(null);
   }
 
   if (loading) return <p>Loading...</p>;
@@ -45,10 +51,19 @@ function Day14() {
 
   return (
     <div>
-      <h1>Day 14 - Delete Movies via API</h1>
-      <MoviesList movies={movies} onDelete={handleDeleteMovie} />
+      <h1>Day 15 - Update Movies</h1>
+
+      {editMovie && (
+        <EditMovieForm
+          movie={editMovie}
+          onSave={handleUpdateMovie}
+          onCancel={() => setEditMovie(null)}
+        />
+      )}
+
+      <MoviesList movies={movies} onEdit={handleEditClick} />
     </div>
   );
 }
 
-export default Day14;
+export default Day15;
