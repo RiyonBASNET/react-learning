@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMovies, updateMovie } from "../api/movies";
+import { deleteMovie, getMovies, updateMovie } from "../api/movies";
 import MoviesList from "../components/MoviesList";
 import EditMovieForm from "../components/EditMovieForm";
 
@@ -32,18 +32,38 @@ function Day15() {
     loadMovies();
   }, []);
 
+  async function handleDeleteMovie(id) {
+    setMovies((prev) => prev.filter((movie) => movie.id !== id));
+
+    try {
+      await deleteMovie(id);
+    } catch {
+      setError("Unable to delete movie.");
+    }
+  }
+
   function handleEditClick(movie) {
     setEditMovie(movie);
   }
 
   async function handleUpdateMovie(updatedMovie) {
-    const saved = await updateMovie(updatedMovie.id, updatedMovie);
+    try {
+      // const saved = await updateMovie(updatedMovie.id, updatedMovie);
 
-    setMovies((prev) =>
-      prev.map((movie) => (movie.id === saved.id ? saved : movie)),
-    );
+      // setMovies((prev) =>
+      //   prev.map((movie) => (movie.id === saved.id ? saved : movie)),
+      // );
 
-    setEditMovie(null);
+      setMovies((prev) =>
+        prev.map((movie) =>
+          movie.id === updatedMovie.id ? updatedMovie : movie,
+        ),
+      );
+
+      setEditMovie(null);
+    } catch {
+      setError("Failed to update movie");
+    }
   }
 
   if (loading) return <p>Loading...</p>;
@@ -61,7 +81,11 @@ function Day15() {
         />
       )}
 
-      <MoviesList movies={movies} onEdit={handleEditClick} />
+      <MoviesList
+        movies={movies}
+        onEdit={handleEditClick}
+        onDelete={handleDeleteMovie}
+      />
     </div>
   );
 }
