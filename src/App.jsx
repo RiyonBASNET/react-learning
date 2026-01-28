@@ -12,6 +12,7 @@ import Day12 from "./pages/Day12";
 import Day13 from "./pages/Day13";
 import Day14 from "./pages/Day14";
 import Day15 from "./pages/Day15";
+import Day16 from "./pages/Day16";
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
         <Link to="/day5">Day 5</Link> | <Link to="/day9">Day 9</Link> |
         <Link to="/day10">Day 10</Link> | <Link to="/day11">Day 11</Link> |
         <Link to="/day12">Day 12</Link> | <Link to="/day13">Day 13</Link> |
-        <Link to="/day14">Day 14</Link> |<Link to="/day15">Day 15</Link> |
+        <Link to="/day14">Day 14</Link> | <Link to="/day15">Day 15</Link> |
+        <Link to="/day16">Day 16</Link> |
       </nav>
       <Routes>
         <Route path="/day1" element={<Day1 />} />
@@ -39,6 +41,7 @@ function App() {
         <Route path="/day13" element={<Day13 />} />
         <Route path="/day14" element={<Day14 />} />
         <Route path="/day15" element={<Day15 />} />
+        <Route path="/day16" element={<Day16 />} />
       </Routes>
     </div>
   );
