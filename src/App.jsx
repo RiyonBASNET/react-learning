@@ -13,14 +13,15 @@ import Day13 from "./pages/Day13";
 import Day14 from "./pages/Day14";
 import Day15 from "./pages/Day15";
 import Day16 from "./pages/Day16";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import Dashboard from "./pages/Dashboard";
+import AdminRoute from "./routes/AdminRoute";
+import Home from "./pages/Home";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
     <div>
-      <h1>React Learning</h1>
-
       <nav>
         <Link to="/day1">Day 1</Link> | <Link to="/day2">Day 2</Link> |
         <Link to="/day3">Day 3</Link> | <Link to="/day4">Day 4</Link> |
@@ -28,10 +29,11 @@ function App() {
         <Link to="/day10">Day 10</Link> | <Link to="/day11">Day 11</Link> |
         <Link to="/day12">Day 12</Link> | <Link to="/day13">Day 13</Link> |
         <Link to="/day14">Day 14</Link> | <Link to="/day15">Day 15</Link> |
-        <Link to="/day16">Day 16</Link> | <Link to="/dashboard">Dashboard</Link>{" "}
-        |
+        <Link to="/day16">Day 16</Link> | <Link to="/dashboard">Dashboard</Link>
+        | <Link to="/admin">Admin Dashboard</Link>
       </nav>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/day1" element={<Day1 />} />
         <Route path="/day2" element={<Day2 />} />
         <Route path="/day3" element={<Day3 />} />
@@ -52,7 +54,15 @@ function App() {
               <Dashboard />
             </ProtectedRoute>
           }
-        ></Route>
+        />
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
       </Routes>
     </div>
   );

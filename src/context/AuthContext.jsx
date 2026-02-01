@@ -17,7 +17,10 @@ export function AuthProvider({ children }) {
   }, []);
 
   function login(username) {
-    const userData = { username };
+    const userData = {
+      username,
+      role: username === "admin" ? "admin" : "user",
+    };
 
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
